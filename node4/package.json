@@ -1,5 +1,11 @@
 {
-  "dependencies": {
-    "async": "^3.2.4"
-  }
+  "name": "node4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "products.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
