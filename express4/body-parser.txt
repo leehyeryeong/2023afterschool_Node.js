@@ -10,3 +10,12 @@ body-parser 사용시
  * bodyParser.urlencoded()를 등록하면, 자동으로 req에 body 속성이 추가되고 저장된다
  * 만약 urls에 접근하고 싶다면, req.body.urls이다
  * 인코딩도 default로 UTF-8로 해주고, 이벤트 등록할 필요도 없음
+
+ urlencoded()의 옵션
+  * extended는 중첩된 객체 표현을 허용할지 말지를 정하는 것
+  * urlencoded는 url 형식의 데이터 전달을 의미
+  * 객체 안의 객체를 파싱할 수 있게 하려면 true
+  * true이면 os 모듈을 사용
+  * false이면 기본 내장된 querystring 모듈을 사용
+    querystring.parse는 object를 상속받지 않는다
+  * {extended: true}를 하면 qs.parse를 사용하므로, 중첩 객체 파싱 가능
