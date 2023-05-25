@@ -27,7 +27,7 @@ router.route('/setcookie').get(function (req, res) {
   console.log('/setcookie 라우팅 함수 호출됨');
   res.cookie('cookieName', 'cookieValue', cookieConfig)
   res.cookie('user', {
-    name: '윤성 현',
+    name: '이혜령',
     data: 100
   });
   res.redirect('/getcookie'); //경로 이동
@@ -61,3 +61,7 @@ app.use(errorHandler);
 app.listen(port, () => {
   console.log(`Server Running at ${port}`)
 });
+
+//1. 서버는 웹 브라우저에게 세션 값을 보내줍니다,.(sid라고 하며, 아무런 의미도 없는 단순 식별자입니다.)
+//2. 클라이언트는 접속할 때 자신이 가지고 있는 sid를 서버에게 전달
+//3. 서버는 클라이언트가 보내준 sid를 가지고, 해당 유저를 식별
