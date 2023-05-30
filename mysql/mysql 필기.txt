@@ -1,0 +1,26 @@
+-- 주석(--이랑 주석 내용이랑 사이 띄어쓰기)
+-- root login
+mysql -u root -p
+
+-- 현재 사용중인 사용자 확인
+select user();
+
+-- 사용하는 DB 선택
+use DB명;
+-- mysql 사용(설치하면 자동 생성되는 DB
+use mysql;
+
+-- 현재 사용중인 DB 확인
+select database();
+select schema();
+
+-- 스키마 조회
+shoe schemas;
+
+-- 스키마 생성
+create database 스키마 이름 default character set utf8mb4;
+
+create database test default character set utf8mb4;
+show databases;
+
+-- 스키마 test 삭제
