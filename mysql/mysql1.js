@@ -9,14 +9,22 @@ const connection = mysql.createConnection({
   database: 'mydb'    //db schema name
 });
 
-//1) DB 연결 테스트
-connection.connect(function(err) {
-  if(err) {
-    console.error('mysql connection error');
-    console.error(err);
-    throw err;
-  } else {
-    console.log("연결에 성공하였습니다.");
-  }
-});
+// //1) DB 연결 테스트
+// connection.connect(function(err) {
+//   if(err) {
+//     console.error('mysql connection error');
+//     console.error(err);
+//     throw err;
+//   } else {
+//     console.log("연결에 성공하였습니다.");
+//   }
+// });
 
+//2) users 테이블의 데이터 출력
+connection.connect();
+connection.query('SELECT * FROM USERS', 
+(error, rows, fields) => {
+  if(error) throw error;
+  console.log('USERS info: ', rows);
+});
+connection.end();

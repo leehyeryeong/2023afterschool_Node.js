@@ -24,3 +24,38 @@ create database test default character set utf8mb4;
 show databases;
 
 -- 스키마 test 삭제
+drop database test;
+drop schema test;
+
+-- 계정 목록 보기
+select host, user from user;
+
+-- 계정 생성
+create user '아이디'@localhost identified by '비밀번호';
+create user 'lee'@localhost identified by '5678';
+
+-- 계정 정보 변경
+alter user '아이디'@localhost identified by with mysql_natvie_password by '비밀번호'
+-- 적용
+flush privileges;
+
+-- 계정 삭제
+drop user 아이디;
+drop user 'lee'@localhost;
+
+-- mydb schema 생성
+create database mydb default character set utf8mb4;
+show databases;
+
+-- 사용자 계정에게 mydb의 모든 권한 주기
+-- *.*: 모든 스키마의 모든 권한
+grant all privileges on *.* to 사용자 계정@localhost;
+grant all privileges on *.* to lee@localhost;
+
+-- 권한 확인
+show grants for 사용자 계정@localhost;
+show grants for lee@localhost;
+
+-- 변경 사항 저장
+flush privileges;
+
