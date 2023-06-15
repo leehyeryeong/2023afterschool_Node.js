@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+  <button id="pbtn">리스트 추가</button>
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>내용</th>
+                <th>완료</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody id="todoTableBody">
+            
+        </tbody>
+    </table>
+
+    <script>
+        var todoList = []; // 할 일 리스트를 저장할 배열
+
+        // 리스트 추가 버튼 클릭 시 이벤트 처리
+        document.getElementById("pbtn").addEventListener("click", function() {
+            // 할 일 입력 페이지로 이동
+            var todo = prompt("할 일 내용을 입력하세요:");
+            if (todo) {
+                // 입력된 할 일을 배열에 추가
+                todoList.push(todo);
+                // 입력된 할 일을 테이블에 추가
+                addTodoItem(todo);
+            }
+        });
+
+        // 할 일 테이블에 아이템 추가 함수
+        function addTodoItem(todo) {
+            var tableBody = document.getElementById("todoTableBody");
+
+            // 새로운 행(tr) 요소 생성
+            var row = document.createElement("tr");
+
+            // 번호 셀(td) 추가
+            var numberCell = document.createElement("td");
+            numberCell.textContent = tableBody.children.length + 1;
+            row.appendChild(numberCell);
+
+            // 내용 셀(td) 추가
+            var contentCell = document.createElement("td");
+            contentCell.textContent = todo;
+            row.appendChild(contentCell);
+
+            // 완료 셀(td) 추가
+            var completedCell = document.createElement("td");
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            completedCell.appendChild(checkbox);
+            row.appendChild(completedCell);
+
+            // 수정 셀(td) 추가
+            var editCell = document.createElement("td");
+            var editButton = document.createElement("button");
+            editButton.textContent = "수정";
+            editButton.id = "editBtn_" + tableBody.children.length; // 수정 버튼 아이디 부여
+            // 수정 버튼 클릭 시 이벤트 처리
+            editButton.addEventListener("click", function() {
+                var index = parseInt(this.id.split("_")[1]);
+                var newTodo = prompt("새로운 할 일 내용을 입력하세요:", todoList[index]);
+                if (newTodo) {
+                    todoList[index] = newTodo;
+                    contentCell.textContent = newTodo;
+                }
+            });
+            editCell.appendChild(editButton);
+            row.appendChild(editCell);
+
+            // 삭제 셀(td) 추가
+            var deleteCell = document.createElement("td");
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "삭제";
+            deleteButton.id = "deleteBtn_" + tableBody.children.length; // 삭제 버튼 아이디 부여
+            // 삭제 버튼 클릭 시 이벤트 처리
+            deleteButton.addEventListener("click", function() {
+                var index = parseInt(this.id.split("_")[1]);
+                todoList.splice(index, 1);
+                row.remove();
+            });
+            deleteCell.appendChild(deleteButton);
+            row.appendChild(deleteCell);
+
+            // 테이블에 행 추가
+            tableBody.appendChild(row);
+        }
+    </script>
+</body>
+</html>
